@@ -4,6 +4,7 @@ echo "Initializing database..."
 
 python db.py
 
+
 echo "Starting Gunicorn..."
 
 exec gunicorn \
