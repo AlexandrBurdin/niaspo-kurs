@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система управления запасами</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Система управления запасами</h1>
+    <p>Управление складами сети ресторанов</p>
+</header>
+<main>
+    <section class="card">
+        <h2>Точка ресторана</h2>
+        <div class="form-group">
+            <label for="restaurant">
+                Выберите ресторан
+            </label>
+            <select id="restaurant">
+                <option value="">
+                    Загрузка ресторанов...
+                </option>
+            </select>
+        </div>
+        <div id="restaurant-info" class="restaurant-info"></div>
+    </section>
+    <section class="card">
+        <h2>Добавить продукт на склад</h2>
+        <form id="product-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">
+                        Название продукта
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Например, Помидоры"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="quantity">
+                        Количество
+                    </label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        placeholder="10"
+                        min="0"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="unit">
+                        Единица измерения
+                    </label>
+                    <input
+                        type="text"
+                        id="unit"
+                        placeholder="кг, л, шт."
+                        required
+                    >
+                </div>
+            </div>
+            <button type="submit">
+                Добавить на склад
+            </button>
+        </form>
+        <div id="message" class="message"></div>
+    </section>
+    <section class="card">
+        <div class="warehouse-header">
+            <div>
+                <h2>Склад</h2>
+                <p id="warehouse-name">
+                    Выберите ресторан
+                </p>
+            </div>
+            <div
+                id="product-count"
+                class="product-count"
+            >
+                0 позиций
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Продукт</th>
+                        <th>Количество</th>
+                        <th>Единица</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="products"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<footer>
+    Система управления запасами © 2026
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

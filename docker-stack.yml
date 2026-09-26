@@ -1,0 +1,94 @@
+version: "3.9"
+
+services:
+
+  nginx:
+    image: inventory/nginx:latest
+
+    ports:
+      - "80:80"
+
+    networks:
+      - frontend
+      - backend
+
+    deploy:
+      replicas: 1
+
+
+  frontend:
+    image: inventory/frontend:latest
+
+    networks:
+      - frontend
+
+    deploy:
+      replicas: 1
+
+
+  backend:
+    image: inventory/backend:latest
+
+    environment:
+      POSTGRES_DB: inventory
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: password
+
+    networks:
+      - backend
+
+    deploy:
+      replicas: 2
+
+
+  postgres:
+    image: postgres:16
+
+    environment:
+      POSTGRES_DB: inventory
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: password
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - backend
+
+    deploy:
+      replicas: 1
+
+
+  backup:
+    image: inventory/backup:latest
+
+    environment:
+      POSTGRES_DB: inventory
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: password
+
+    volumes:
+      - backup_data:/backup
+
+    networks:
+      - backend
+
+    deploy:
+      replicas: 1
+
+
+networks:
+
+  frontend:
+    driver: overlay
+
+  backend:
+    driver: overlay
+    internal: true
+
+
+volumes:
+
+  postgres_data:
+
+  backup_data:
