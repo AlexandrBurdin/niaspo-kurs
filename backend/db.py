@@ -100,6 +100,7 @@ def init_db():
                 ('Ресторан "Север"', 'ул. Северная, 25'),
                 ('Ресторан "Южный"', 'ул. Южная, 15')
             ON CONFLICT (name) DO NOTHING
+            DO UPDATE SET address = EXCLUDED.address
         """)
 
         if old_products:
