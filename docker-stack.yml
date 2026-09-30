@@ -1,7 +1,6 @@
 version: "3.9"
 
 services:
-
   nginx:
     image: inventory/nginx:latest
 
@@ -15,7 +14,6 @@ services:
     deploy:
       replicas: 1
 
-
   frontend:
     image: inventory/frontend:latest
 
@@ -24,7 +22,6 @@ services:
 
     deploy:
       replicas: 1
-
 
   backend:
     image: inventory/backend:latest
@@ -39,7 +36,6 @@ services:
 
     deploy:
       replicas: 2
-
 
   postgres:
     image: postgres:16
@@ -58,7 +54,6 @@ services:
     deploy:
       replicas: 1
 
-
   backup:
     image: inventory/backup:latest
 
@@ -76,9 +71,7 @@ services:
     deploy:
       replicas: 1
 
-
 networks:
-
   frontend:
     driver: overlay
 
@@ -86,9 +79,6 @@ networks:
     driver: overlay
     internal: true
 
-
 volumes:
-
   postgres_data:
-
   backup_data:
