@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   nginx:
-    image: inventory/nginx:latest
+    image: lexb1/inventory-nginx:latest
 
     ports:
       - "80:80"
@@ -15,7 +15,7 @@ services:
       replicas: 1
 
   frontend:
-    image: inventory/frontend:latest
+    image: lexb1/inventory-frontend:latest
 
     networks:
       - frontend
@@ -24,7 +24,7 @@ services:
       replicas: 1
 
   backend:
-    image: inventory/backend:latest
+    image: lexb1/inventory-backend:latest
 
     environment:
       POSTGRES_DB: inventory
@@ -55,7 +55,7 @@ services:
       replicas: 1
 
   backup:
-    image: inventory/backup:latest
+    image: lexb1/inventory-backup:latest
 
     environment:
       POSTGRES_DB: inventory
